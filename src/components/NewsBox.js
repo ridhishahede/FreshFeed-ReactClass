@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 
 export class NewsBox extends Component {
   render() {
-    let {title, description, imageURL} = this.props;
+    //This is how you take in the props as parameters
+    let {title, description, imageURL, newsUrl} = this.props;
     return (
       <div className='my-3 mx-3'>
         <div className="card" style={{width: "18rem"}}>
@@ -10,7 +11,7 @@ export class NewsBox extends Component {
           <div className="card-body">
             <h5 className="card-title">{title}</h5>
             <p className="card-text">{description}</p>
-            <a href="/newsdetails/" className="btn btn-primary">Go somewhere</a>
+            <a href={newsUrl} target='_blank' className="btn btn-success">Know More!</a>
           </div>
         </div>
       </div>

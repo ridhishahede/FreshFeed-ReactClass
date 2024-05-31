@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NewsBox from './NewsBox'
 
 export class News extends Component {
+  //Store all the states you want to iterate through in an array
   articles = [
         {
             "source": {
@@ -41,19 +42,6 @@ export class News extends Component {
             "urlToImage": "https://www.hindustantimes.com/ht-img/img/2024/05/30/1600x900/Prajwal-Revanna-_passport_1717067247007_1717067247177.jpg",
             "publishedAt": "2024-05-30T11:08:04Z",
             "content": "The ministry of external affairs has initiated action under provisions in the Passport Act for revocation of the diplomatic passport of suspended JD(S) MP Prajwal Revanna, MEA spokesperson Randhir Ja… [+2742 chars]"
-        },
-        {
-            "source": {
-                "id": "the-hindu",
-                "name": "The Hindu"
-            },
-            "author": "The Hindu",
-            "title": "PM Modi’s post-poll meditation: From Kedarnath cave in 2019 to Kanniyakumari Rock Memorial in 2024 - The Hindu",
-            "description": null,
-            "url": "https://www.thehindu.com/news/national/pm-modis-post-poll-meditation-from-kedarnath-cave-in-2019-to-kanniyakumari-rock-memorial-in-2024/article68231385.ece",
-            "urlToImage": null,
-            "publishedAt": "2024-05-30T10:38:00Z",
-            "content": null
         },
         {
             "source": {
@@ -174,45 +162,6 @@ export class News extends Component {
         },
         {
             "source": {
-                "id": "google-news",
-                "name": "Google News"
-            },
-            "author": "NDTV",
-            "title": "PM Modi's Shoutout As Chennai Start-Up Scripts Rocket History On 5th Try - NDTV",
-            "description": null,
-            "url": "https://news.google.com/rss/articles/CBMibmh0dHBzOi8vd3d3Lm5kdHYuY29tL2luZGlhLW5ld3MvaXNyb3MtYmFja2luZy1kb2dnZWQtd2lsbC1ob3ctY2hlbm5haS1zdGFydC11cC1zY3JpcHRlZC1yb2NrZXQtaGlzdG9yeS01Nzc2MjA10gF0aHR0cHM6Ly93d3cubmR0di5jb20vaW5kaWEtbmV3cy9pc3Jvcy1iYWNraW5nLWRvZ2dlZC13aWxsLWhvdy1jaGVubmFpLXN0YXJ0LXVwLXNjcmlwdGVkLXJvY2tldC1oaXN0b3J5LTU3NzYyMDUvYW1wLzE?oc=5",
-            "urlToImage": null,
-            "publishedAt": "2024-05-30T08:56:00Z",
-            "content": null
-        },
-        {
-            "source": {
-                "id": null,
-                "name": "The Indian Express"
-            },
-            "author": "The Indian Express",
-            "title": "Pune Porsche crash case: Mother’s blood sample replaced with that of minor at hospital - The Indian Express",
-            "description": null,
-            "url": "https://indianexpress.com/article/cities/pune/pune-porsche-crash-case-mother-blood-sample-accused-minor-9361131/",
-            "urlToImage": null,
-            "publishedAt": "2024-05-30T08:54:19Z",
-            "content": null
-        },
-        {
-            "source": {
-                "id": "the-hindu",
-                "name": "The Hindu"
-            },
-            "author": "The Hindu",
-            "title": "Three Lt. Colonels among 16 Armymen booked for attempt to murder in Jammu and Kashmir - The Hindu",
-            "description": null,
-            "url": "https://www.thehindu.com/news/national/jammu-and-kashmir/kupwara-police-station-attack-3-lt-colonels-among-16-others-booked-for-attempt-to-murder-in-jk/article68231752.ece",
-            "urlToImage": null,
-            "publishedAt": "2024-05-30T08:51:00Z",
-            "content": null
-        },
-        {
-            "source": {
                 "id": null,
                 "name": "Sarkaritel.com"
             },
@@ -236,37 +185,12 @@ export class News extends Component {
             "urlToImage": "https://www.hindustantimes.com/ht-img/img/2024/05/30/1600x900/ganguly-gambhir_1665116276816_1717056767528.jpg",
             "publishedAt": "2024-05-30T08:18:02Z",
             "content": "As speculations about the next head coach of Team India are rife, former BCCI president Sourav Ganguly passed on an indirect message to the board, advising the officials to \"choose the coach wisely\".… [+2570 chars]"
-        },
-        {
-            "source": {
-                "id": null,
-                "name": "Financial Express"
-            },
-            "author": "The Financial Express",
-            "title": "Google data leak: Secret of search ranking algorithm is out, 2,500 internal documents leaks - The Financial Express",
-            "description": null,
-            "url": "https://www.financialexpress.com/life/technology-google-data-leak-secret-of-search-ranking-algorithm-is-out-2500-internal-documents-leaks-3507044/",
-            "urlToImage": null,
-            "publishedAt": "2024-05-30T08:12:19Z",
-            "content": null
-        },
-        {
-            "source": {
-                "id": null,
-                "name": "Business Standard"
-            },
-            "author": "Business Standard",
-            "title": "OpenAI makes ChatGPT-4o's advanced tools available to users in free tier - Business Standard",
-            "description": null,
-            "url": "https://www.business-standard.com/technology/tech-news/openai-makes-chatgpt-4o-s-advanced-tools-available-to-users-in-free-tier-124053000880_1.html",
-            "urlToImage": null,
-            "publishedAt": "2024-05-30T08:10:41Z",
-            "content": null
         }
     ]
 
   constructor() {
     super();
+    //Store the array created in the state to be able to reach out to one state at a time dynamically
     this.state = {
       articles: this.articles,
       loading: false
@@ -279,21 +203,11 @@ export class News extends Component {
         <h2>FreshFeed - Top Headlines</h2>
 
         <div className="row my-4 mx-3">
-          <div className="col-md-3"><NewsBox title="myTitle" description="myDescription" imageURL="https://www.hindustantimes.com/ht-img/img/2024/05/30/1600x900/Bihar-CM-Nitish-Kumar-with-his-deputy-Tejashwi-Yad_1705420925700_1717069414830.jpg"/></div>
-          <div className="col-md-3"><NewsBox title="myTitle" description="myDescription"/></div>
-          <div className="col-md-3"><NewsBox title="myTitle" description="myDescription"/></div>
-        </div>
-
-        <div className="row my-4 mx-3">
-          <div className="col-md-3"><NewsBox title="myTitle" description="myDescription"/></div>
-          <div className="col-md-3"><NewsBox title="myTitle" description="myDescription"/></div>
-          <div className="col-md-3"><NewsBox title="myTitle" description="myDescription"/></div>
-        </div>
-
-        <div className="row my-4 mx-3">
-          <div className="col-md-3"><NewsBox title="myTitle" description="myDescription"/></div>
-          <div className="col-md-3"><NewsBox title="myTitle" description="myDescription"/></div>
-          <div className="col-md-3"><NewsBox title="myTitle" description="myDescription"/></div>
+        {this.state.articles.map((ele) => {
+          return  <div className="col-md-4 p-3" key={ele.url}>
+                    <NewsBox title={ele.title} description={ele.description} imageURL={ele.urlToImage} newsUrl={ele.url}/>
+                  </div>
+        })}
         </div>
       </div>
     )
