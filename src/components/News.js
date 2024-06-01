@@ -18,7 +18,7 @@ export class News extends Component {
   }
 
   fetchArticles = async (page) => {
-    let url = `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=24ff48a637f64980aff81181fcfb7cdb&page=${page}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=24ff48a637f64980aff81181fcfb7cdb&page=${page}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -37,7 +37,7 @@ export class News extends Component {
   };
 
   handleNextClick = async () => {
-    if (this.state.page < Math.ceil(this.state.total / 20)) {
+    if (this.state.page < Math.ceil(this.state.total / this.props.pageSize)) {
       this.fetchArticles(this.state.page + 1);
     }
   };
@@ -61,7 +61,7 @@ export class News extends Component {
                   imageURL={
                     ele.urlToImage
                       ? ele.urlToImage
-                      : 'https://images.moneycontrol.com/static-mcnews/2024/02/stocks_nifty-sensex_market.jpg'
+                      : 'https://images.moneycontrol.com/static-mcnews/this.props.pageSize24/02/stocks_nifty-sensex_market.jpg'
                   }
                   newsUrl={ele.url}
                 />
@@ -69,6 +69,7 @@ export class News extends Component {
             );
           })}
         </div>
+
         <div className="container">
           <nav aria-label="Page navigation example">
             <ul className="pagination">
@@ -81,7 +82,7 @@ export class News extends Component {
                   &larr; Previous
                 </button>
               </li>
-              {[...Array(Math.ceil(this.state.total / 20)).keys()].map((num) => (
+              {[...Array(Math.ceil(this.state.total / this.props.pageSize)).keys()].map((num) => (
                 <li className="page-item" key={num + 1}>
                   <button
                     onClick={() => this.handleClick(num + 1)}
@@ -93,7 +94,7 @@ export class News extends Component {
               ))}
               <li className="page-item">
                 <button
-                  disabled={this.state.page >= Math.ceil(this.state.total / 20)}
+                  disabled={this.state.page >= Math.ceil(this.state.total / this.props.pageSize)}
                   onClick={this.handleNextClick}
                   className="page-link"
                 >
@@ -103,6 +104,7 @@ export class News extends Component {
             </ul>
           </nav>
         </div>
+
       </div>
     );
   }
