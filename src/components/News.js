@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
 import NewsBox from './NewsBox';
+import Spinner from './Spinner';
+import PropTypes from 'prop-types'
 
 export class News extends Component {
-  constructor() {
-    super();
+    static defaultProps = {
+        pageSize: 8,
+        country: "in",
+        category: "general"
+    }
+
+    static propTypes = {
+        pageSize: PropTypes.number,
+        country: PropTypes.string,
+        category: PropTypes.string,
+    }
+
+  constructor(props) {
+    super(props);
     // Store the array created in the state to be able to reach out to one state at a time dynamically
     this.state = {
       articles: [],
-      loading: false,
       page: 1,
       total: 0,
-    };
+    }
   }
 
   async componentDidMount() {
@@ -18,7 +31,7 @@ export class News extends Component {
   }
 
   fetchArticles = async (page) => {
-    let url = `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=24ff48a637f64980aff81181fcfb7cdb&page=${page}&pageSize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=24ff48a637f64980aff81181fcfb7cdb&page=${page}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -49,10 +62,12 @@ export class News extends Component {
   render() {
     return (
       <div className="container my-3">
-        <h1>FreshFeed - Top Headlines</h1>
+        <h1 className="my-3 fw-bold">{this.props.pageTitle}</h1>
+
+        {this.state.loading && <Spinner/>}
 
         <div className="row my-4 mx-3">
-          {this.state.articles.map((ele) => {
+          {!this.state.loading && this.state.articles.map((ele) => {
             return (
               <div className="col-md-4 p-3" key={ele.url}>
                 <NewsBox
@@ -61,9 +76,11 @@ export class News extends Component {
                   imageURL={
                     ele.urlToImage
                       ? ele.urlToImage
-                      : 'https://images.moneycontrol.com/static-mcnews/this.props.pageSize24/02/stocks_nifty-sensex_market.jpg'
+                      : 'https://c.ndtvimg.com/2023-04/lbf6619o_stock-market_625x300_25_April_23.jpg?im=FaceCrop,algorithm=dnn,width=1200,height=738?ver-20240506.08'
                   }
                   newsUrl={ele.url}
+                  author={ele.author}
+                  date={ele.publishedAt}
                 />
               </div>
             );
