@@ -17,7 +17,7 @@ export class NewsBox extends Component {
                 {new Date(date).toUTCString()}
               </small>
             </p>
-            <a href={newsUrl} target="_blank" className="btn btn-lg btn-dark">
+            <a href={newsUrl} target="_blank" rel="noreferrer" className="btn btn-lg btn-dark">
               Know More!
             </a>
           </div>
